@@ -79,19 +79,20 @@ def add_book(book_id : str, name : str, author : str, force_add : bool = Query(F
     save_db(db)
     return{"message":"book added successfully", "updated db": db}
 
-@app.put("/update-book/{id}")
-def update_book(id :str, new_id :Optional[int]=None, name :Optional[str]=None, author :Optional[str]=None):
-    for book in db:
-        if book["id"]==id:
-            if new_id:
-                book["id"]=new_id
-            if name:
-                book["name"]=name
-            if author:
-                    book["author"]=author
-            save_db(db)
-            return{"message":"book updated successfully.", "updated_book" :book, "all books" : db}
-    return{"message":"book not found"}
+@app.put("/books/{book_id}")
+def update_book(book_id: int, updated_book: dict):
+    with open("books.json", "r") as f:
+        books = json.load(f)
+    
+    for book in books:
+        # Indha line dhaan mukkiyam: book_id-a integer-a compare pandrom
+        if book["id"] == book_id:
+            book.update(updated_book)
+            with open("books.json", "w") as f:
+                json.dump(books, f, indent=4)
+            return {"message": "Book updated successfully", "book": book}
+            
+    return {"error": "Book not found"}
 
 @app.post("/insert-book")
 def insert_book(book_id: str, name: str, author: str, position: Optional[int]=Query(None), allow_duplicate: bool=Query(False)):
