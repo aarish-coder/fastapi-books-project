@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "python",
+        "author": "aarish"
+    },
+    {
+        "id": 2,
+        "name": "java",
+        "author": "athi"
+    },
+    {
+        "id": 3,
+        "name": "free",
+        "author": "fire"
+    },
+    {
+        "id": "aa2301",
+        "name": "gamaru",
+        "author": "narav"
+    },
+    {
+        "id": "aa2401",
+        "name": "nataraj",
+        "author": "arav"
+    },
+    {
+        "id": "ab2401",
+        "name": "nataraj",
+        "author": "arav"
+    },
+    {
+        "id": "ac2301",
+        "name": "gamaru",
+        "author": "narav"
+    },
+    {
+        "id": "ac2304",
+        "name": "gamaru",
+        "author": "narav"
+    },
+    {
+        "id": "ac2305",
+        "name": "gamaru",
+        "author": "narav"
+    }
+]
