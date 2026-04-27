@@ -38,7 +38,7 @@ def search_book(book_id:Optional[str]=None, book_name:Optional[str]=None, author
     return {"status": "Not found"}
 
 @app.delete("/delete-book")
-def delete_book(book_id:Optional[int]=None, name:Optional[str]=None, author:Optional[str]=None):
+def delete_book(book_id:Optional[str]=None, name:Optional[str]=None, author:Optional[str]=None):
     matched_books=[]
     for book in db:
         match=True
