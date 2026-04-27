@@ -80,20 +80,14 @@ def add_book(book_id : str, name : str, author : str, force_add : bool = Query(F
     return{"message":"book added successfully", "updated db": db}
 
 @app.put("/update-book/{id}")
-def update_book(id : int, new_id : Optional[int]=None, name : Optional[str]=None, author : Optional[str]=None):
-    # 'id : int' nu maathuna dhaan number compare aagum
+def update_book(id :str, new_id :Optional[str]=None, name :Optional[str]=None, author :Optional[str]=None):
     for book in db:
-        if book["id"] == id:
-            if new_id:
-                book["id"] = new_id
-            if name:
-                book["name"] = name
-            if author:
-                book["author"] = author
-            
+        if str(book["id"]) == id:
+            if new_id: book["id"] = new_id
+            if name: book["name"] = name
+            if author: book["author"] = author
             save_db(db)
-            return {"message": "book updated successfully.", "updated_book": book, "all books": db}
-            
+            return {"message": "book updated successfully.", "updated_book": book}
     return {"message": "book not found"}
 @app.post("/insert-book")
 def insert_book(book_id: str, name: str, author: str, position: Optional[int]=Query(None), allow_duplicate: bool=Query(False)):
